@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>María Grove-Gordillo | Historia Moderna</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #221f1a;
+            --color-surface: #2c2720;
+            --color-primary: #d0a94f;
+            --color-secondary: #e8d3a0;
+            --color-accent: #b25050;
+            --color-forest: #5c7362;
+            --color-text: #f2e8d5;
+            --color-text-light: #c7b89a;
+            --color-border: #4a4030;
+            --color-border-light: #352d22;
+            --font-serif: "Cormorant Garamond", "EB Garamond", "Georgia", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            --font-sans: "EB Garamond", "Georgia", "Segoe UI", Roboto, serif;
+            --max-width: 960px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-bg);
+            background-image:
+                radial-gradient(ellipse at top, rgba(178,80,80,.08) 0%, transparent 55%),
+                radial-gradient(ellipse at bottom, rgba(92,115,98,.07) 0%, transparent 55%);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ── */
+        header {
+            background: linear-gradient(180deg, #2c2720 0%, #221f1a 100%);
+            color: #fff;
+            padding: 3rem 1.5rem 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+        header h1 {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: .05em;
+            margin-bottom: .35rem;
+            color: var(--color-secondary);
+        }
+        header .subtitle {
+            font-size: .9rem;
+            color: var(--color-text-light);
+            font-weight: 300;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        /* ── Language Switcher ── */
+        .lang-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 100;
+        }
+        .lang-switcher select {
+            background: rgba(26,26,31,.95);
+            color: var(--color-secondary);
+            border: 1px solid var(--color-border);
+            padding: .4rem .7rem;
+            border-radius: 4px;
+            font-size: .82rem;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+        .lang-switcher select option { color: #222; background: #fff; }
+
+        /* ── Nav ── */
+        nav {
+            background: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: .2rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: .55rem 1rem;
+        }
+        nav a {
+            display: block;
+            padding: .35rem .85rem;
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: .82rem;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: color .2s, background .2s;
+        }
+        nav a:hover { color: var(--color-secondary); background: var(--color-border-light); }
+
+        /* ── Main ── */
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        section { margin-bottom: 2.8rem; }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.35rem;
+            color: var(--color-secondary);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: .4rem;
+            margin-bottom: 1.2rem;
+            font-weight: 400;
+        }
+
+        p, li { font-size: .95rem; color: var(--color-text); }
+        p + p { margin-top: .8rem; }
+
+        /* ── Bio Card ── */
+        .bio-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 1.8rem;
+            display: flex;
+            gap: 1.8rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .bio-card .avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: var(--color-border);
+            border: 2px solid var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            color: var(--color-primary);
+            flex-shrink: 0;
+            font-family: var(--font-serif);
+        }
+        .bio-card .info { flex: 1; min-width: 200px; }
+        .bio-card .info h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            color: var(--color-secondary);
+            margin-bottom: .15rem;
+            font-weight: 400;
+        }
+        .bio-card .info .role {
+            font-size: .88rem;
+            color: var(--color-text-light);
+            margin-bottom: .8rem;
+        }
+        .bio-card .info .affiliation {
+            font-size: .88rem;
+            color: var(--color-text-light);
+            line-height: 1.5;
+        }
+
+        /* ── Tags ── */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-top: .6rem;
+        }
+        .tag {
+            background: var(--color-border);
+            color: var(--color-text-light);
+            padding: .2rem .6rem;
+            border-radius: 3px;
+            font-size: .78rem;
+            letter-spacing: .02em;
+            border: 1px solid var(--color-border);
+        }
+
+        /* ── Publication List ── */
+        .pub-list { list-style: none; }
+        .pub-list li {
+            padding: .9rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .pub-list li:last-child { border-bottom: none; }
+        .pub-title {
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-size: .92rem;
+        }
+        .pub-meta {
+            font-size: .8rem;
+            color: var(--color-text-light);
+            margin-top: .2rem;
+        }
+        .pub-type {
+            display: inline-block;
+            background: var(--color-primary);
+            color: #1a1208;
+            font-size: .68rem;
+            padding: .12rem .45rem;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            margin-right: .4rem;
+            vertical-align: middle;
+            font-weight: 600;
+        }
+
+        /* ── Info Grid ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+        .info-box {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            padding: 1.2rem;
+        }
+        .info-box h3 {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            color: var(--color-primary);
+            margin-bottom: .5rem;
+            font-weight: 400;
+        }
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .info-box li {
+            font-size: .88rem;
+            padding: .25rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .info-box li:last-child { border-bottom: none; }
+
+        /* ── Links ── */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: .8rem;
+        }
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            padding: .8rem 1rem;
+            text-decoration: none;
+            color: var(--color-text);
+            font-size: .88rem;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .link-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 2px 12px rgba(208,169,79,.18);
+        }
+        .link-card .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--color-primary);
+            color: #1a1208;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid var(--color-border);
+            font-size: .8rem;
+            color: var(--color-text-light);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            header h1 { font-size: 1.5rem; }
+            nav a { font-size: .72rem; padding: .3rem .55rem; }
+            .bio-card { padding: 1.2rem; }
+            .bio-card .avatar { width: 80px; height: 80px; font-size: 1.8rem; }
+            main { padding: 1.2rem 1rem 3rem; }
+            h2 { font-size: 1.15rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lang-switcher">
+    <select id="langSelect" onchange="switchLang(this.value)">
+        <option value="es">ES</option>
+        <option value="en">EN</option>
+        <option value="de">DE</option>
+    </select>
+</div>
+
+<header>
+    <h1 data-es="María Grove-Gordillo" data-en="María Grove-Gordillo" data-de="María Grove-Gordillo">María Grove-Gordillo</h1>
+    <p class="subtitle" data-es="Historiadora &middot; Historia Moderna &middot; Historiadora Digital" data-en="Historian &middot; Early Modern History &middot; Digital Humanities" data-de="Historikerin &middot; Frühe Neuzeit &middot; Digitale Historikerin">Historiadora &middot; Historia Moderna &middot; Historiadora Digital</p>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#about" data-es="Sobre mí" data-en="About" data-de="Über mich">Sobre mí</a></li>
+        <li><a href="#research" data-es="Investigación" data-en="Research" data-de="Forschung">Investigación</a></li>
+        <li><a href="#publications" data-es="Publicaciones" data-en="Publications" data-de="Publikationen">Publicaciones</a></li>
+        <li><a href="#teaching" data-es="Docencia" data-en="Teaching" data-de="Lehre">Docencia</a></li>
+        <li><a href="#projects" data-es="Proyectos" data-en="Projects" data-de="Projekte">Proyectos</a></li>
+        <li><a href="#academic-links" data-es="Enlaces" data-en="Links" data-de="Links">Enlaces</a></li>
+        <li><a href="#contact" data-es="Contacto" data-en="Contact" data-de="Kontakt">Contacto</a></li>
+    </ul>
+</nav>
+
+<main>
+
+    <!-- ═══ ABOUT ═══ -->
+    <section id="about">
+        <h2 data-es="Sobre mí" data-en="About" data-de="Über mich">Sobre mí</h2>
+        <div class="bio-card">
+            <div class="avatar">MG</div>
+            <div class="info">
+                <h3>María Grove-Gordillo</h3>
+                <p class="role" data-es="Investigadora postdoctoral &middot; Otto-Friedrich-Universität Bamberg" data-en="Postdoctoral Researcher &middot; Otto-Friedrich University of Bamberg" data-de="Postdoktorandin &middot; Otto-Friedrich-Universität Bamberg">Investigadora postdoctoral &middot; Otto-Friedrich-Universität Bamberg</p>
+                <div class="affiliation">
+                    <span data-es="Instituto de Ciencias Históricas y Culturales &middot; Digitale Geschichtswissenschaften (Ciencias Históricas Digitales)" data-en="Institute of Historical and Cultural Sciences &middot; Digital Historical Sciences" data-de="Institut für Geschichts- und Kulturwissenschaften &middot; Digitale Geschichtswissenschaften">Instituto de Ciencias Históricas y Culturales &middot; Digitale Geschichtswissenschaften (Ciencias Históricas Digitales)</span><br>
+                    <span data-es="Bamberg, Alemania" data-en="Bamberg, Germany" data-de="Bamberg, Deutschland">Bamberg, Alemania</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:1.4rem;">
+            <p data-es="María Grove-Gordillo es doctora en Historia por la Universidad de Sevilla (2024) e investigadora postdoctoral en la Universidad Otto-Friedrich de Bamberg (Alemania), donde forma parte del grupo de Digitale Geschichtswissenschaften (Ciencias Históricas Digitales). Su trayectoria académica se centra en las relaciones comerciales anglo-españolas durante la Edad Moderna, con especial atención a la comunidad mercantil inglesa en los puertos de la Andalucía atlántica entre los siglos XVI y XVIII."
+                  data-en="María Grove-Gordillo holds a PhD in History from the University of Seville (2024) and is a postdoctoral researcher at Otto-Friedrich University of Bamberg (Germany), where she is part of the Digital Historical Sciences group. Her academic career focuses on Anglo-Spanish commercial relations during the Early Modern period, with particular attention to the English merchant community in the ports of Atlantic Andalusia from the 16th to the 18th century." data-de="María Grove-Gordillo promovierte 2024 in Geschichte an der Universität Sevilla und ist Postdoktorandin an der Otto-Friedrich-Universität Bamberg (Deutschland), wo sie Teil der Arbeitsgruppe Digitale Geschichtswissenschaften ist. Ihre akademische Laufbahn konzentriert sich auf die englisch-spanischen Handelsbeziehungen in der Frühen Neuzeit, mit besonderem Augenmerk auf die englische Kaufmannsgemeinschaft in den Häfen des atlantischen Andalusien vom 16. bis zum 18. Jahrhundert.">
+                María Grove-Gordillo es doctora en Historia por la Universidad de Sevilla (2024) e investigadora postdoctoral en la Universidad Otto-Friedrich de Bamberg (Alemania), donde forma parte del grupo de Digitale Geschichtswissenschaften (Ciencias Históricas Digitales). Su trayectoria académica se centra en las relaciones comerciales anglo-españolas durante la Edad Moderna, con especial atención a la comunidad mercantil inglesa en los puertos de la Andalucía atlántica entre los siglos XVI y XVIII.
+            </p>
+            <p data-es="Ha trabajado extensamente con fuentes archivísticas tanto españolas como inglesas, abordando cuestiones de historia social, económica y comercial. Su investigación doctoral, dirigida por los profesores Manuel Francisco Fernández Chaves y Juan José Iglesias Rodríguez, versó sobre la comunidad mercantil inglesa en la Andalucía atlántica entre 1507 y 1561, abarcando los puertos del Condado de Niebla, Sevilla, Cádiz, Sanlúcar de Barrameda y El Puerto de Santa María."
+                  data-en="She has worked extensively with both Spanish and English archival sources, addressing issues of social, economic, and commercial history. Her doctoral research, supervised by Professors Manuel Francisco Fernández Chaves and Juan José Iglesias Rodríguez, focused on the English merchant community in Atlantic Andalusia between 1507 and 1561, covering the ports of the Condado de Niebla, Seville, Cádiz, Sanlúcar de Barrameda, and El Puerto de Santa María." data-de="Sie hat umfassend mit spanischen und englischen Archivquellen gearbeitet und dabei sozial-, wirtschafts- und handelsgeschichtliche Fragestellungen untersucht. Ihre Doktorarbeit, betreut von den Professoren Manuel Francisco Fernández Chaves und Juan José Iglesias Rodríguez, befasste sich mit der englischen Kaufmannsgemeinschaft im atlantischen Andalusien zwischen 1507 und 1561 und umfasste die Häfen des Condado de Niebla, Sevilla, Cádiz, Sanlúcar de Barrameda und El Puerto de Santa María.">
+                Ha trabajado extensamente con fuentes archivísticas tanto españolas como inglesas, abordando cuestiones de historia social, económica y comercial. Su investigación doctoral, dirigida por los profesores Manuel Francisco Fernández Chaves y Juan José Iglesias Rodríguez, versó sobre la comunidad mercantil inglesa en la Andalucía atlántica entre 1507 y 1561, abarcando los puertos del Condado de Niebla, Sevilla, Cádiz, Sanlúcar de Barrameda y El Puerto de Santa María.
+            </p>
+        </div>
+
+        <div class="tags" style="margin-top:1rem;">
+            <span class="tag" data-es="Historia Moderna" data-en="Early Modern History" data-de="Frühe Neuzeit">Historia Moderna</span>
+            <span class="tag" data-es="Historia Social" data-en="Social History" data-de="Sozialgeschichte">Historia Social</span>
+            <span class="tag" data-es="Historia Económica" data-en="Economic History" data-de="Wirtschaftsgeschichte">Historia Económica</span>
+            <span class="tag" data-es="Historia Comercial" data-en="Commercial History" data-de="Handelsgeschichte">Historia Comercial</span>
+            <span class="tag" data-es="Relaciones Anglocastellanas" data-en="Anglo-Spanish Relations" data-de="Englisch-Kastilische Beziehungen">Relaciones Anglocastellanas</span>
+            <span class="tag" data-es="Humanidades Digitales" data-en="Digital Humanities" data-de="Digitale Geisteswissenschaften">Humanidades Digitales</span>
+            <span class="tag" data-es="Siglo XVI" data-en="16th Century" data-de="16. Jahrhundert">Siglo XVI</span>
+            <span class="tag" data-es="Historia de Sevilla" data-en="History of Seville" data-de="Geschichte Sevillas">Historia de Sevilla</span>
+        </div>
+    </section>
+
+    <!-- ═══ RESEARCH ═══ -->
+    <section id="research">
+        <h2 data-es="Líneas de investigación" data-en="Research Lines" data-de="Forschungsschwerpunkte">Líneas de investigación</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <h3 data-es="Comercio anglocastellano" data-en="Anglo-Spanish Trade" data-de="Englisch-kastilischer Handel">Comercio anglocastellano</h3>
+                <p data-es="Estudio de las redes mercantiles inglesas en los puertos andaluces durante los siglos XVI y XVII, analizando las estrategias comerciales, alianzas y conflictos en un contexto de tensiones políticas y religiosas entre ambas coronas."
+                       data-en="Study of English merchant networks in Andalusian ports during the 16th and 17th centuries, analyzing commercial strategies, alliances, and conflicts in a context of political and religious tensions between both crowns." data-de="Untersuchung der englischen Handelsnetzwerke in den andalusischen Häfen im 16. und 17. Jahrhundert, mit einer Analyse von Handelsstrategien, Bündnissen und Konflikten im Kontext politischer und religiöser Spannungen zwischen beiden Kronen.">
+                    Estudio de las redes mercantiles inglesas en los puertos andaluces durante los siglos XVI y XVII, analizando las estrategias comerciales, alianzas y conflictos en un contexto de tensiones políticas y religiosas entre ambas coronas.
+                </p>
+            </div>
+            <div class="info-box">
+                <h3 data-es="Historia social y económica" data-en="Social and Economic History" data-de="Sozial- und Wirtschaftsgeschichte">Historia social y económica</h3>
+                <p data-es="Análisis de la integración social, los vínculos familiares y las estrategias de permanencia de los mercaderes extranjeros en la Andalucía moderna, incluyendo cuestiones de esclavitud, industria y finanzas."
+                       data-en="Analysis of social integration, family ties, and strategies of permanence of foreign merchants in modern Andalusia, including issues of slavery, industry, and finance." data-de="Analyse der sozialen Integration, familiären Bindungen und Bleibestrategien ausländischer Kaufleute im Andalusien der Frühen Neuzeit, einschließlich Fragen der Sklaverei, Industrie und Finanzen.">
+                    Análisis de la integración social, los vínculos familiares y las estrategias de permanencia de los mercaderes extranjeros en la Andalucía moderna, incluyendo cuestiones de esclavitud, industria y finanzas.
+                </p>
+            </div>
+            <div class="info-box">
+                <h3 data-es="Historia digital" data-en="Digital History" data-de="Digitale Geschichtswissenschaft">Historia digital</h3>
+                <p data-es="Aplicación de herramientas y metodologías de las humanidades digitales al estudio de las fuentes archivísticas modernas, facilitando el análisis de redes comerciales y la visualización de datos históricos."
+                       data-en="Application of digital humanities tools and methodologies to the study of Early Modern archival sources, facilitating the analysis of commercial networks and the visualization of historical data." data-de="Anwendung von Werkzeugen und Methoden der Digital Humanities auf die Untersuchung frühneuzeitlicher Archivquellen, zur Erleichterung der Analyse von Handelsnetzwerken und der Visualisierung historischer Daten.">
+                    Aplicación de herramientas y metodologías de las humanidades digitales al estudio de las fuentes archivísticas modernas, facilitando el análisis de redes comerciales y la visualización de datos históricos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PUBLICATIONS ═══ -->
+    <section id="publications">
+        <h2 data-es="Publicaciones destacadas" data-en="Selected Publications" data-de="Ausgewählte Publikationen">Publicaciones destacadas</h2>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-primary);margin-bottom:.8rem;font-weight:400;" data-es="Libro" data-en="Book" data-de="Buch">Libro</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="pub-meta"><span class="pub-type">Edición</span> 2024</span>
+                <div class="pub-title" data-es="La economía mercantil española. Siglos XVI–XVII" data-en="Spanish Mercantile Economy. 16th–17th Centuries" data-de="Die spanische Handelswirtschaft. 16.–17. Jahrhundert">La economía mercantil española. Siglos XVI–XVII</div>
+                <div class="pub-meta" data-es="Coord. María Grove-Gordillo, Manuel Francisco Fernández Chaves, Rafael M. Pérez García. Ediciones Trea." data-en="Ed. María Grove-Gordillo, Manuel Francisco Fernández Chaves, Rafael M. Pérez García. Ediciones Trea." data-de="Hrsg. María Grove-Gordillo, Manuel Francisco Fernández Chaves, Rafael M. Pérez García. Ediciones Trea.">Coord. María Grove-Gordillo, Manuel Francisco Fernández Chaves, Rafael M. Pérez García. Ediciones Trea.</div>
+            </li>
+        </ul>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-primary);margin:1.2rem 0 .8rem;font-weight:400;" data-es="Artículos" data-en="Journal Articles" data-de="Zeitschriftenartikel">Artículos</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Artículo" data-en="Article" data-de="Artikel">Artículo</span> 2025</span>
+                <div class="pub-title" data-es="Thomas Howell, un mercader inglés en la Sevilla del XVI: Su legado en Gales a través de los colegios de Llandaff y Denbigh" data-en="Thomas Howell, an English Merchant in 16th-Century Seville: His Legacy in Wales through the Colleges of Llandaff and Denbigh" data-de="Thomas Howell, ein englischer Kaufmann im Sevilla des 16. Jahrhunderts: Sein Vermächtnis in Wales durch die Kollegien von Llandaff und Denbigh">Thomas Howell, un mercader inglés en la Sevilla del XVI: Su legado en Gales a través de los colegios de Llandaff y Denbigh</div>
+                <div class="pub-meta"><em>Andalucía en la Historia</em>, Nº 87, pp. 80–83.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Artículo" data-en="Article" data-de="Artikel">Artículo</span> 2023</span>
+                <div class="pub-title" data-es="El rol de la comunidad mercantil inglesa en el mercado textil de Sevilla (1525–1540)" data-en="The Role of the English Merchant Community in the Textile Market of Seville (1525–1540)" data-de="Die Rolle der englischen Kaufmannsgemeinschaft auf dem Textilmarkt Sevillas (1525–1540)">El rol de la comunidad mercantil inglesa en el mercado textil de Sevilla (1525–1540)</div>
+                <div class="pub-meta"><em>Hispania: Revista Española de Historia</em>, Vol. 83, Nº 275.</div>
+            </li>
+        </ul>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-primary);margin:1.2rem 0 .8rem;font-weight:400;" data-es="Capítulos de libro" data-en="Book Chapters" data-de="Buchkapitel">Capítulos de libro</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2025</span>
+                <div class="pub-title" data-es="La Andalucía atlántica como espacio de aprendizaje para los mercaderes ingleses en los inicios de la modernidad (siglo XVI)" data-en="Atlantic Andalusia as a Learning Space for English Merchants in the Early Modern Period (16th Century)" data-de="Das atlantische Andalusien als Lernraum für englische Kaufleute am Beginn der Neuzeit (16. Jahrhundert)">La Andalucía atlántica como espacio de aprendizaje para los mercaderes ingleses en los inicios de la modernidad (siglo XVI)</div>
+                <div class="pub-meta" data-es="En Del Humanismo al Barroco. Universidad, Iglesia y sociedad: estudios en homenaje al profesor José Antonio Ollero Pina, pp. 209–220." data-en="In From Humanism to the Baroque. University, Church and Society: Studies in Honour of Professor José Antonio Ollero Pina, pp. 209–220." data-de="In Del Humanismo al Barroco. Universität, Kirche und Gesellschaft: Studien zu Ehren von Professor José Antonio Ollero Pina, S. 209–220.">En <em>Del Humanismo al Barroco. Universidad, Iglesia y sociedad: estudios en homenaje al profesor José Antonio Ollero Pina</em>, pp. 209–220.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2024</span>
+                <div class="pub-title" data-es="El espionaje inglés en Castilla a principios del siglo XVI: el caso del mercader Thomas Batcock" data-en="English Espionage in Castile in the Early 16th Century: The Case of the Merchant Thomas Batcock" data-de="Englische Spionage in Kastilien zu Beginn des 16. Jahrhunderts: der Fall des Kaufmanns Thomas Batcock">El espionaje inglés en Castilla a principios del siglo XVI: el caso del mercader Thomas Batcock</div>
+                <div class="pub-meta" data-es="En La economía mercantil española. Siglos XVI–XVII, pp. 15–34." data-en="In Spanish Mercantile Economy. 16th–17th Centuries, pp. 15–34." data-de="In Die spanische Handelswirtschaft. 16.–17. Jahrhundert, S. 15–34.">En <em>La economía mercantil española. Siglos XVI–XVII</em>, pp. 15–34.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2024</span>
+                <div class="pub-title" data-es="Enemies and Clients: The Investment of the English and Irish Community in the Low Andalusia in the Export and Production of Citrus Fruits during the 18th Century" data-en="Enemies and Clients: The Investment of the English and Irish Community in the Low Andalusia in the Export and Production of Citrus Fruits during the 18th Century" data-de="Enemies and Clients: The Investment of the English and Irish Community in the Low Andalusia in the Export and Production of Citrus Fruits during the 18th Century">Enemies and Clients: The Investment of the English and Irish Community in the Low Andalusia in the Export and Production of Citrus Fruits during the 18th Century</div>
+                <div class="pub-meta" data-es="Con Manuel F. Fernández Chaves y Mercedes Gamero Rojas. En The United Kingdom and Spain in the Eighteenth Century: Beloved Enemy, pp. 325–348." data-en="With Manuel F. Fernández Chaves and Mercedes Gamero Rojas. In The United Kingdom and Spain in the Eighteenth Century: Beloved Enemy, pp. 325–348." data-de="Mit Manuel F. Fernández Chaves und Mercedes Gamero Rojas. In The United Kingdom and Spain in the Eighteenth Century: Beloved Enemy, S. 325–348.">Con Manuel F. Fernández Chaves y Mercedes Gamero Rojas. En <em>The United Kingdom and Spain in the Eighteenth Century: Beloved Enemy</em>, pp. 325–348.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2022</span>
+                <div class="pub-title" data-es="El puerto de Cádiz en el entramado comercial anglo-castellano (1545–1560)" data-en="The Port of Cádiz in the Anglo-Spanish Commercial Network (1545–1560)" data-de="Der Hafen von Cádiz im englisch-kastilischen Handelsgeflecht (1545–1560)">El puerto de Cádiz en el entramado comercial anglo-castellano (1545–1560)</div>
+                <div class="pub-meta" data-es="En Ciudades y puertos de Andalucía en un Atlántico global, siglos XVI–XVIII, pp. 41–64." data-en="In Cities and Ports of Andalusia in a Global Atlantic, 16th–18th Centuries, pp. 41–64." data-de="In Ciudades y puertos de Andalucía en un Atlántico global, 16.–18. Jahrhundert, S. 41–64.">En <em>Ciudades y puertos de Andalucía en un Atlántico global, siglos XVI–XVIII</em>, pp. 41–64.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2022</span>
+                <div class="pub-title" data-es="La colonia mercantil inglesa de Sevilla en una época de transición (1660–1666)" data-en="The English Merchant Colony of Seville in a Period of Transition (1660–1666)" data-de="Die englische Kaufmannskolonie von Sevilla in einer Übergangszeit (1660–1666)">La colonia mercantil inglesa de Sevilla en una época de transición (1660–1666)</div>
+                <div class="pub-meta" data-es="Con Mercedes Gamero Rojas. En Lady Ann y el embajador viajan a Sevilla: (Primavera de 1664), pp. 197–218." data-en="With Mercedes Gamero Rojas. In Lady Ann and the Ambassador Travel to Seville: (Spring 1664), pp. 197–218." data-de="Mit Mercedes Gamero Rojas. In Lady Ann y el embajador viajan a Sevilla: (Frühjahr 1664), S. 197–218.">Con Mercedes Gamero Rojas. En <em>Lady Ann y el embajador viajan a Sevilla: (Primavera de 1664)</em>, pp. 197–218.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2021</span>
+                <div class="pub-title" data-es="Mercaderes ingleses en Sevilla: la liquidación de la empresa comercial de Tomás Mallart, 1523" data-en="English Merchants in Seville: The Liquidation of the Commercial Enterprise of Tomás Mallart, 1523" data-de="Englische Kaufleute in Sevilla: die Liquidation des Handelsunternehmens von Tomás Mallart, 1523">Mercaderes ingleses en Sevilla: la liquidación de la empresa comercial de Tomás Mallart, 1523</div>
+                <div class="pub-meta" data-es="En A la sombra de las catedrales: cultura, poder y guerra en la Edad Moderna, pp. 1881–1894." data-en="In In the Shadow of Cathedrals: Culture, Power and War in the Early Modern Era, pp. 1881–1894." data-de="In A la sombra de las catedrales: Kultur, Macht und Krieg in der Frühen Neuzeit, S. 1881–1894.">En <em>A la sombra de las catedrales: cultura, poder y guerra en la Edad Moderna</em>, pp. 1881–1894.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2020</span>
+                <div class="pub-title" data-es="Una aproximación a la población esclava: la collación de Santa Ana de Sevilla (1620–1634)" data-en="An Approach to the Enslaved Population: The Parish of Santa Ana in Seville (1620–1634)" data-de="Eine Annäherung an die versklavte Bevölkerung: die Pfarrei Santa Ana in Sevilla (1620–1634)">Una aproximación a la población esclava: la collación de Santa Ana de Sevilla (1620–1634)</div>
+                <div class="pub-meta" data-es="En Tratas, esclavitudes y mestizajes: una historia conectada, siglos XV–XVIII, pp. 289–302." data-en="In Trafficking, Slavery and Mixed Heritage: A Connected History, 15th–18th Centuries, pp. 289–302." data-de="In Tratas, esclavitudes y mestizajes: eine verbundene Geschichte, 15.–18. Jahrhundert, S. 289–302.">En <em>Tratas, esclavitudes y mestizajes: una historia conectada, siglos XV–XVIII</em>, pp. 289–302.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Capítulo" data-en="Chapter" data-de="Kapitel">Capítulo</span> 2020</span>
+                <div class="pub-title" data-es="El papel de la comunidad mercantil inglesa en la industria del jabón en el Reino de Sevilla" data-en="The Role of the English Merchant Community in the Soap Industry of the Kingdom of Seville" data-de="Die Rolle der englischen Kaufmannsgemeinschaft in der Seifenindustrie des Königreichs Sevilla">El papel de la comunidad mercantil inglesa en la industria del jabón en el Reino de Sevilla</div>
+                <div class="pub-meta" data-es="En Hacer historia moderna: líneas actuales y futuras de investigación, pp. 346–361." data-en="In Doing Early Modern History: Current and Future Research Lines, pp. 346–361." data-de="In Hacer historia moderna: aktuelle und zukünftige Forschungslinien, S. 346–361.">En <em>Hacer historia moderna: líneas actuales y futuras de investigación</em>, pp. 346–361.</div>
+            </li>
+        </ul>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-primary);margin:1.2rem 0 .8rem;font-weight:400;" data-es="Reseñas" data-en="Reviews" data-de="Rezensionen">Reseñas</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Reseña" data-en="Review" data-de="Rezension">Reseña</span> 2025</span>
+                <div class="pub-title" data-es="Reseña de Distant Neighbours. Trade, Diplomacy and Political Exchange between Sweden and Spain in the Early Modern Era" data-en="Review of Distant Neighbours. Trade, Diplomacy and Political Exchange between Sweden and Spain in the Early Modern Era" data-de="Rezension von Distant Neighbours. Trade, Diplomacy and Political Exchange between Sweden and Spain in the Early Modern Era">Reseña de <em>Distant Neighbours. Trade, Diplomacy and Political Exchange between Sweden and Spain in the Early Modern Era</em></div>
+                <div class="pub-meta"><em>Chronica nova</em>, Nº 51, pp. 515–517.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Reseña" data-en="Review" data-de="Rezension">Reseña</span> 2023</span>
+                <div class="pub-title" data-es="Reseña de Henry VIII and the Merchants: The World of Stephen Vaughan" data-en="Review of Henry VIII and the Merchants: The World of Stephen Vaughan" data-de="Rezension von Henry VIII and the Merchants: The World of Stephen Vaughan">Reseña de <em>Henry VIII and the Merchants: The World of Stephen Vaughan</em></div>
+                <div class="pub-meta"><em>Espacio, Tiempo y Forma. Serie IV, Historia Moderna</em>, Nº 36, pp. 329–332.</div>
+            </li>
+            <li>
+                <span class="pub-meta"><span class="pub-type" data-es="Reseña" data-en="Review" data-de="Rezension">Reseña</span> 2023</span>
+                <div class="pub-title" data-es="Reseña de En torno a la Primera Globalización: circulaciones y conexiones entre el Atlántico y el Mediterráneo (1492–1824)" data-en="Review of Around the First Globalization: Circulations and Connections between the Atlantic and the Mediterranean (1492–1824)" data-de="Rezension von En torno a la Primera Globalización: circulaciones y conexiones entre el Atlántico y el Mediterráneo (1492–1824)">Reseña de <em>En torno a la Primera Globalización: circulaciones y conexiones entre el Atlántico y el Mediterráneo (1492–1824)</em></div>
+                <div class="pub-meta"><em>Magallánica: revista de historia moderna</em>, Vol. 9, Nº 18, pp. 513–518.</div>
+            </li>
+        </ul>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.05rem;color:var(--color-primary);margin:1.2rem 0 .8rem;font-weight:400;" data-es="Tesis doctoral" data-en="Doctoral Thesis" data-de="Doktorarbeit">Tesis doctoral</h3>
+        <ul class="pub-list">
+            <li>
+                <span class="pub-meta"><span class="pub-type">PhD</span> 2024</span>
+                <div class="pub-title" data-es="Comunidad, comercio y conflicto: los mercaderes ingleses en la Andalucía atlántica (1507–1561)" data-en="Community, Trade and Conflict: English Merchants in Atlantic Andalusia (1507–1561)" data-de="Gemeinschaft, Handel und Konflikt: die englischen Kaufleute im atlantischen Andalusien (1507–1561)">Comunidad, comercio y conflicto: los mercaderes ingleses en la Andalucía atlántica (1507–1561)</div>
+                <div class="pub-meta" data-es="Universidad de Sevilla. Dir. Manuel Francisco Fernández Chaves y Juan José Iglesias Rodríguez." data-en="University of Seville. Supervised by Manuel Francisco Fernández Chaves and Juan José Iglesias Rodríguez." data-de="Universität Sevilla. Betreut von Manuel Francisco Fernández Chaves und Juan José Iglesias Rodríguez.">Universidad de Sevilla. Dir. Manuel Francisco Fernández Chaves y Juan José Iglesias Rodríguez.</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ═══ TEACHING ═══ -->
+    <section id="teaching">
+        <h2 data-es="Docencia y formación" data-en="Teaching and Training" data-de="Lehre und Ausbildung">Docencia y formación</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <h3 data-es="Enfoque pedagógico" data-en="Pedagogical Approach" data-de="Pädagogischer Ansatz">Enfoque pedagógico</h3>
+                <p data-es="En línea con su interés por la innovación educativa, ha participado en proyectos de renovación metodológica en la enseñanza universitaria de la Historia Moderna, con un enfoque comparado hacia el caso anglosajón."
+                       data-en="In line with her interest in educational innovation, she has participated in projects renewing methodological approaches in the university teaching of Early Modern History, with a comparative focus on the Anglo-Saxon case." data-de="Im Einklang mit ihrem Interesse an pädagogischer Innovation hat sie an Projekten zur methodischen Erneuerung der universitären Lehre der Frühen Neuzeit mitgewirkt, mit einem vergleichenden Fokus auf den angelsächsischen Fall.">
+                    En línea con su interés por la innovación educativa, ha participado en proyectos de renovación metodológica en la enseñanza universitaria de la Historia Moderna, con un enfoque comparado hacia el caso anglosajón.
+                </p>
+            </div>
+            <div class="info-box">
+                <h3 data-es="Publicación académica" data-en="Academic Publication" data-de="Akademische Publikation">Publicación académica</h3>
+                <p data-es="Coautoría del capítulo 'Renovar el enfoque global en la enseñanza universitaria: el caso anglosajón' en El conocimiento como innovación: propuestas metodológicas y reflexiones sobre la docencia universitaria de la Historia Moderna (2024)."
+                       data-en="Co-author of the chapter 'Renewing the Global Approach in University Teaching: The Anglo-Saxon Case' in Knowledge as Innovation: Methodological Proposals and Reflections on University Teaching of Early Modern History (2024)." data-de="Mitautorin des Kapitels 'Die globale Perspektive in der Hochschullehre erneuern: der angelsächsische Fall' in Wissen als Innovation: methodische Vorschläge und Überlegungen zur universitären Lehre der Frühen Neuzeit (2024).">
+                    Coautoría del capítulo "Renovar el enfoque global en la enseñanza universitaria: el caso anglosajón" en <em>El conocimiento como innovación: propuestas metodológicas y reflexiones sobre la docencia universitaria de la Historia Moderna</em> (2024).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROJECTS ═══ -->
+    <section id="projects">
+        <h2 data-es="Proyectos y actividades" data-en="Projects and Activities" data-de="Projekte und Aktivitäten">Proyectos y actividades</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <h3 data-es="Investigación postdoctoral" data-en="Postdoctoral Research" data-de="Postdoktorandenforschung">Investigación postdoctoral</h3>
+                <p data-es="En la Universidad de Bamberg, continúa su investigación sobre redes comerciales anglo-españolas en la Edad Moderna, incorporando metodologías de las ciencias históricas digitales para el análisis de fuentes archivísticas."
+                       data-en="At the University of Bamberg, she continues her research on Anglo-Spanish commercial networks in the Early Modern period, incorporating digital historical science methodologies for archival source analysis." data-de="An der Universität Bamberg setzt sie ihre Forschung zu englisch-spanischen Handelsnetzwerken in der Frühen Neuzeit fort und integriert dabei Methoden der digitalen Geschichtswissenschaften zur Analyse von Archivquellen.">
+                    En la Universidad de Bamberg, continúa su investigación sobre redes comerciales anglo-españolas en la Edad Moderna, incorporando metodologías de las ciencias históricas digitales para el análisis de fuentes archivísticas.
+                </p>
+            </div>
+            <div class="info-box">
+                <h3 data-es="Colaboraciones" data-en="Collaborations" data-de="Kooperationen">Colaboraciones</h3>
+                <p data-es="Ha colaborado con investigadores de la Universidad de Sevilla, incluyendo a los profesores Mercedes Gamero Rojas, Manuel Francisco Fernández Chaves y Francisco Amor Martín, en proyectos sobre historia comercial, esclavitud y comercio de productos agrícolas."
+                       data-en="She has collaborated with researchers from the University of Seville, including Professors Mercedes Gamero Rojas, Manuel Francisco Fernández Chaves, and Francisco Amor Martín, on projects covering commercial history, slavery, and agricultural trade." data-de="Sie hat mit Forschern der Universität Sevilla zusammengearbeitet, darunter die Professoren Mercedes Gamero Rojas, Manuel Francisco Fernández Chaves und Francisco Amor Martín, in Projekten zur Handelsgeschichte, Sklaverei und zum Handel mit landwirtschaftlichen Erzeugnissen.">
+                    Ha colaborado con investigadores de la Universidad de Sevilla, incluyendo a los profesores Mercedes Gamero Rojas, Manuel Francisco Fernández Chaves y Francisco Amor Martín, en proyectos sobre historia comercial, esclavitud y comercio de productos agrícolas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ ACADEMIC LINKS ═══ -->
+    <section id="academic-links">
+        <h2 data-es="Enlaces académicos" data-en="Academic Profiles" data-de="Akademische Profile">Enlaces académicos</h2>
+        <div class="links-grid">
+            <a href="https://orcid.org/0000-0001-7840-1611" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">ID</span>
+                <span>ORCID</span>
+            </a>
+            <a href="https://scholar.google.com/citations?user=HavqzUIAAAAJ" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">GS</span>
+                <span>Google Scholar</span>
+            </a>
+            <a href="https://www.researchgate.net/profile/Maria-Grove-Gordillo" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">RG</span>
+                <span>ResearchGate</span>
+            </a>
+            <a href="https://dialnet.unirioja.es/servlet/autor?codigo=5160632" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">Dn</span>
+                <span>Dialnet</span>
+            </a>
+            <a href="https://fis.uni-bamberg.de/entities/person/feebf718-6d09-44c9-9031-683580c87799" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">UB</span>
+                <span>Universität Bamberg</span>
+            </a>
+            <a href="https://bamberg.academia.edu/Mar%C3%ADaGroveGordillo" target="_blank" rel="noopener" class="link-card">
+                <span class="icon">Ac</span>
+                <span>Academia.edu</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section id="contact">
+        <h2 data-es="Contacto" data-en="Contact" data-de="Kontakt">Contacto</h2>
+        <div class="info-grid">
+            <div class="info-box">
+                <h3 data-es="Institución" data-en="Institution" data-de="Institution">Institución</h3>
+                <p style="font-size:.9rem;">
+                    <span data-es="Universidad Otto-Friedrich de Bamberg" data-en="Otto-Friedrich University of Bamberg" data-de="Otto-Friedrich-Universität Bamberg">Universidad Otto-Friedrich de Bamberg</span><br>
+                    <span data-es="Instituto de Ciencias Históricas y Culturales" data-en="Institute of Historical and Cultural Sciences" data-de="Institut für Geschichts- und Kulturwissenschaften">Instituto de Ciencias Históricas y Culturales</span><br>
+                    <span data-es="Digitale Geschichtswissenschaften" data-en="Digital Historical Sciences" data-de="Digitale Geschichtswissenschaften">Digitale Geschichtswissenschaften</span><br>
+                    Am Kranen 11<br>
+                    96047 Bamberg, Germany
+                </p>
+            </div>
+            <div class="info-box">
+                <h3 data-es="Enlaces de contacto" data-en="Contact Links" data-de="Kontaktlinks">Enlaces de contacto</h3>
+                <p style="font-size:.9rem;">
+                    <span data-es="Para contactar, utilice los perfiles académicos en la sección de enlaces o a través de la universidad." data-en="To get in touch, please use the academic profiles listed in the links section or through the university." data-de="Für eine Kontaktaufnahme nutzen Sie bitte die akademischen Profile im Abschnitt Links oder wenden Sie sich an die Universität.">Para contactar, utilice los perfiles académicos en la sección de enlaces o a través de la universidad.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 María Grove-Gordillo &middot;
+        <span data-es="Página generada con fines académicos" data-en="Page generated for academic purposes" data-de="Seite zu akademischen Zwecken erstellt">Página generada con fines académicos</span>
+    </p>
+</footer>
+
+<script>
+(function(){
+    /* ── Language switcher ── */
+    window.switchLang = function(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-es][data-en]').forEach(function(el) {
+            var text = el.getAttribute('data-' + lang);
+            if (text !== null) {
+                el.textContent = text;
+            }
+        });
+    };
+
+    /* ── Smooth scroll for nav links ── */
+    document.querySelectorAll('nav a').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            var target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
